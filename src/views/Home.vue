@@ -36,20 +36,16 @@ import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
           if (openType === 'blank') {
             window.open('https://uk-m.patpat.com/zh/product/Kid-Snowsuit-Windproof-Waterproof-Hooded-Quilted-Jacket-and-Adjustable-Snow-Bib-469150.html', '_blank')
           } else if (openType === 'click') {
-            const openAppBtn = document.getElementById('scheme-open-app')
-            if (openAppBtn) {
-              const event = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-              })
-              openAppBtn.dispatchEvent(event)
-            }
+            this.simulateClick('uni-open-app')
           } else {
             window.location.href = 'https://uk-m.patpat.com/zh/product/Kid-Snowsuit-Windproof-Waterproof-Hooded-Quilted-Jacket-and-Adjustable-Snow-Bib-469150.html'
           }
         } else if (loadingRun === 'scheme') {
-          window.location.href = 'patpat://?action=product_detail&event_id=1&product_id=469150'
+          if (openType === 'click') {
+            this.simulateClick('scheme-open-app')
+          } else {
+            window.location.href = 'patpat://?action=product_detail&event_id=1&product_id=469150'
+          }
         }
       } catch (error) {
         console.log('无法 Scheme link 启动APP', error.message)
@@ -68,6 +64,17 @@ import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
       } catch (error) {
         console.log('无法 Scheme link 启动APP', error.message)
         alert('无法 Scheme link 启动APP')
+      }
+    },
+    simulateClick (btnId: string) {
+      const openAppBtn = document.getElementById(btnId)
+      if (openAppBtn) {
+        const event = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        })
+        openAppBtn.dispatchEvent(event)
       }
     }
   }
