@@ -98,13 +98,14 @@ button {
   color: #fff;
 }
 .btn-box {
-  text-align: left;
+  text-align: center;
   position: relative;
   button {
     margin: 10px;
   }
 }
 .download {
+  padding-bottom: 10px;
   .patpat-app {
     width: 100%;
   }
